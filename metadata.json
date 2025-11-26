@@ -1,0 +1,8 @@
+{
+  "name": "Voice + Visual AI Travel Companion",
+  "description": "A conversational AI assistant that plans complete trips through natural voice interaction. It listens to your travel goals, replies with spoken responses, and visually displays maps, attractions, hotels, and itineraries in real time.",
+  "requestFramePermissions": [
+    "microphone",
+    "geolocation"
+  ]
+}
