@@ -1,0 +1,183 @@
+[
+  {
+    "user": "Hi there!",
+    "assistant": {
+      "intent": "Greeting",
+      "slots": {
+        "location": null,
+        "check_in_date": null,
+        "check_out_date": null,
+        "num_guests": null,
+        "room_type": null,
+        "hotel_name": null
+      },
+      "user_reply": "Hello! Welcome to Marriott Hotels. How can I assist you with your stay today?"
+    }
+  },
+  {
+    "user": "I'm looking for hotels in San Francisco",
+    "assistant": {
+      "intent": "HotelSearch",
+      "slots": {
+        "location": "San Francisco",
+        "check_in_date": null,
+        "check_out_date": null,
+        "num_guests": null,
+        "room_type": null,
+        "hotel_name": null
+      },
+      "user_reply": null
+    }
+  },
+  {
+    "user": "Show me Marriott hotels in Chicago for next week",
+    "assistant": {
+      "intent": "HotelSearch",
+      "slots": {
+        "location": "Chicago",
+        "check_in_date": "next week",
+        "check_out_date": null,
+        "num_guests": null,
+        "room_type": null,
+        "hotel_name": null
+      },
+      "user_reply": null
+    }
+  },
+  {
+    "user": "I want to book a room",
+    "assistant": {
+      "intent": "HotelBooking",
+      "slots": {
+        "location": null,
+        "check_in_date": null,
+        "check_out_date": null,
+        "num_guests": null,
+        "room_type": null,
+        "hotel_name": null
+      },
+      "user_reply": "I'd be happy to help you book a room! Which city or location are you interested in?"
+    }
+  },
+  {
+    "user": "Book me a suite at the JW Marriott in Miami from Dec 20 to Dec 23",
+    "assistant": {
+      "intent": "HotelBooking",
+      "slots": {
+        "location": "Miami",
+        "check_in_date": "Dec 20",
+        "check_out_date": "Dec 23",
+        "num_guests": null,
+        "room_type": "suite",
+        "hotel_name": "JW Marriott"
+      },
+      "user_reply": null
+    }
+  },
+  {
+    "user": "I need a hotel room in Boston",
+    "assistant": {
+      "intent": "HotelSearch",
+      "slots": {
+        "location": "Boston",
+        "check_in_date": null,
+        "check_out_date": null,
+        "num_guests": null,
+        "room_type": null,
+        "hotel_name": null
+      },
+      "user_reply": null
+    }
+  },
+  {
+    "user": "What are your cancellation policies?",
+    "assistant": {
+      "intent": "GeneralQuery",
+      "slots": {
+        "location": null,
+        "check_in_date": null,
+        "check_out_date": null,
+        "num_guests": null,
+        "room_type": null,
+        "hotel_name": null
+      },
+      "user_reply": "Marriott offers flexible cancellation policies. Most bookings can be cancelled up to 24-48 hours before check-in for a full refund, though this varies by property and rate. Would you like to search for a hotel or make a booking?"
+    }
+  },
+  {
+    "user": "Reserve the Residence Inn Times Square for me",
+    "assistant": {
+      "intent": "HotelBooking",
+      "slots": {
+        "location": "Times Square",
+        "check_in_date": null,
+        "check_out_date": null,
+        "num_guests": null,
+        "room_type": null,
+        "hotel_name": "Residence Inn Times Square"
+      },
+      "user_reply": "Excellent choice! What dates would you like to check in and check out?"
+    }
+  },
+  {
+    "user": "2 guests checking in tomorrow for 3 nights in Seattle",
+    "assistant": {
+      "intent": "HotelSearch",
+      "slots": {
+        "location": "Seattle",
+        "check_in_date": "tomorrow",
+        "check_out_date": null,
+        "num_guests": "2",
+        "room_type": null,
+        "hotel_name": null
+      },
+      "user_reply": null
+    }
+  },
+  {
+    "user": "Can I cancel my reservation?",
+    "assistant": {
+      "intent": "CancelBooking",
+      "slots": {
+        "location": null,
+        "check_in_date": null,
+        "check_out_date": null,
+        "num_guests": null,
+        "room_type": null,
+        "hotel_name": null
+      },
+      "user_reply": "I can help you with that. Could you please provide your booking confirmation number or the hotel name and dates?"
+    }
+  },
+  {
+    "user": "No thank you",
+    "assistant": {
+      "intent": "Farewell",
+      "slots": {
+        "location": null,
+        "check_in_date": null,
+        "check_out_date": null,
+        "num_guests": null,
+        "room_type": null,
+        "hotel_name": null
+      },
+      "user_reply": "You're welcome! Thank you for using Marriott Hotels. Have a wonderful day, and feel free to reach out if you need anything in the future!"
+    }
+  },
+  {
+    "user": "That's all I needed, thanks",
+    "assistant": {
+      "intent": "Farewell",
+      "slots": {
+        "location": null,
+        "check_in_date": null,
+        "check_out_date": null,
+        "num_guests": null,
+        "room_type": null,
+        "hotel_name": null
+      },
+      "user_reply": "Great! I'm glad I could help. Have a wonderful stay, and don't hesitate to contact us if you need anything else!"
+    }
+  }
+]
+

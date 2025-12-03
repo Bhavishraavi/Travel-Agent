@@ -51,6 +51,71 @@ export interface FlightOffer {
     carrierCode?: string; 
 }
 
+export interface Hotel {
+    name: string;
+    address: string;
+    rating?: number;
+    user_ratings_total?: number;
+    place_id: string;
+    location?: {
+        lat: number;
+        lng: number;
+    };
+}
+
+export interface HotelSearchResult {
+    success: boolean;
+    message: string;
+    hotels?: Hotel[];
+    location?: string;
+}
+
+export interface HotelBooking {
+    confirmation_number: string;
+    hotel_name: string;
+    location: string;
+    check_in_date: string;
+    check_out_date: string;
+    num_guests: number;
+    room_type: string;
+    status: string;
+    booked_at: string;
+    total_price: number;
+}
+
+export interface HotelBookingResult {
+    success: boolean;
+    message: string;
+    booking?: HotelBooking;
+}
+
+export interface FlightBooking {
+    confirmation_number: string;
+    airline: string;
+    flight_number: string;
+    origin: string;
+    destination: string;
+    departure_date: string;
+    departure_time: string;
+    arrival_time: string;
+    price: number;
+    currency_code: string;
+    travel_class: string;
+    num_passengers: number;
+    passenger_name?: string;
+    status: string;
+    booked_at: string;
+    trip_type: string;
+    return_date?: string;
+    return_flight_number?: string;
+}
+
+export interface FlightBookingResult {
+    success: boolean;
+    message: string;
+    booking?: FlightBooking;
+}
+
 
 // Fix: Add LiveSession interface because it is not exported from the SDK.
 export interface LiveSession {

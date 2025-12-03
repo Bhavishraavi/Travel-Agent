@@ -4,7 +4,7 @@ from __future__ import annotations
 import asyncio
 import os
 import time
-from typing import Any, Dict, List, Tuple
+from typing import Any, Dict, List, Tuple, Optional
 
 import httpx
 from dotenv import load_dotenv
@@ -84,11 +84,11 @@ async def _fetch_flight_offers(
     token: str,
     client: httpx.AsyncClient,
     *,
-    return_date: str | None = None,
-    max_price: float | None = None,
-    currency_code: str | None = None,
-    travel_class: str | None = None,
-    non_stop: bool | None = None,
+    return_date: Optional[str] = None,
+    max_price: Optional[float] = None,
+    currency_code: Optional[str] = None,
+    travel_class: Optional[str] = None,
+    non_stop: Optional[bool] = None,
 ) -> Tuple[List[Dict[str, Any]], Dict[str, Any]]:
     params = {
         'originLocationCode': origin_iata,
@@ -107,13 +107,23 @@ async def _fetch_flight_offers(
         params['travelClass'] = travel_class.upper()
     if non_stop is not None:
         params['nonStop'] = 'true' if non_stop else 'false'
+    
+    # Log the request for debugging
+    print(f"🔍 Amadeus API Request:")
+    print(f"   URL: {AMADEUS_API_BASE}/v2/shopping/flight-offers")
+    print(f"   Params: {params}")
+    
     response = await client.get(
         f'{AMADEUS_API_BASE}/v2/shopping/flight-offers',
         params=params,
         headers={'Authorization': f'Bearer {token}'},
         timeout=30.0,
     )
+    
+    print(f"📡 Amadeus API Response: Status {response.status_code}")
+    
     if response.status_code >= 400:
+        print(f"❌ Amadeus Error Response: {response.text}")
         detail = response.text
         raise FlightSearchError(f'Flight search failed: {detail}')
 
@@ -141,19 +151,35 @@ async def search_flights(
     origin: str,
     destination: str,
     departure_date: str,
-    return_date: str | None = None,
-    max_price: float | None = None,
-    currency_code: str | None = None,
-    travel_class: str | None = None,
-    non_stop: bool | None = None,
+    return_date: Optional[str] = None,
+    max_price: Optional[float] = None,
+    currency_code: Optional[str] = None,
+    travel_class: Optional[str] = None,
+    non_stop: Optional[bool] = None,
 ) -> List[Dict[str, Any]]:
     """Search for flights using Amadeus and return the offers."""
+    print(f"\n{'='*60}")
+    print(f"✈️ FLIGHT SEARCH REQUEST")
+    print(f"   Origin: {origin}")
+    print(f"   Destination: {destination}")
+    print(f"   Departure: {departure_date}")
+    print(f"   Return: {return_date or 'None (one-way)'}")
+    print(f"   Currency: {currency_code or 'Not specified'}")
+    print(f"   Class: {travel_class or 'Not specified'}")
+    print(f"   Non-stop: {non_stop}")
+    print(f"   Max Price: {max_price}")
+    print(f"   Amadeus Credentials: {'✅ Set' if AMADEUS_CLIENT_ID and AMADEUS_CLIENT_SECRET else '❌ Missing'}")
+    print(f"{'='*60}\n")
+    
     async with httpx.AsyncClient() as client:
         token = await _get_amadeus_token(client)
+        print(f"✅ Got Amadeus token")
+        
         origin_iata, destination_iata = await asyncio.gather(
             _resolve_iata(origin, token, client),
             _resolve_iata(destination, token, client),
         )
+        print(f"✅ Resolved IATA codes: {origin} → {origin_iata}, {destination} → {destination_iata}")
         offers, dictionaries = await _fetch_flight_offers(
             origin_iata,
             destination_iata,

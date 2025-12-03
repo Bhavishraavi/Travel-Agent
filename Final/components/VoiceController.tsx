@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useCallback, useState } from 'react';
 // Fix: Add LiveSession to import from local types
-import { Itinerary, Transcript, LiveSession, FlightOffer } from '../types';
+import { Itinerary, Transcript, LiveSession, FlightOffer, Hotel, HotelBooking } from '../types';
 import { startLiveSession } from '../services/geminiService';
 import { MicrophoneIcon, StopCircleIcon, SparklesIcon } from './IconComponents';
 
@@ -10,8 +10,8 @@ interface VoiceControllerProps {
   onStop: () => void;
   transcripts: Transcript[];
   handleTranscriptUpdate: (speaker: 'user' | 'ai', textChunk: string, isFinal: boolean) => void;
-  setVisualData: (data: Itinerary | FlightOffer[] | null) => void;
-  setViewMode: (mode: 'itinerary' | 'flights' | 'loading' | 'search') => void;
+  setVisualData: (data: Itinerary | FlightOffer[] | Hotel[] | HotelBooking[] | null) => void;
+  setViewMode: (mode: 'itinerary' | 'flights' | 'hotels' | 'hotel-booking' | 'loading' | 'search') => void;
   isThinking: boolean;
   setIsThinking: (isThinking: boolean) => void;
 }
